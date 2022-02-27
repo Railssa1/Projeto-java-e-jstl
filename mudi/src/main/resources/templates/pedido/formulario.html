@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<head th:replace="~{base :: head}"></head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	</head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+			<div class="jumbotron mb-0">
+				<h1 class="display-4">Novo Pedido</h1>
+			</div>
+			
+			<div class="card mt-3">
+				<form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
+					<div class="form-group">
+						<label for="nomeProduto">Produto</label>
+						<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do produto"/>
+						<small>Informe o nome do produto.</small>
+						<div class="invalid-feedback" th:errors="*{nomeProduto}">
+							Erros do nome do produto
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="urlProduto">Url</label>
+						<input  th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Url do produto"/>
+						<small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+						<div class="invalid-feedback" th:errors="*{urlProduto}">
+							Erros da url do produto
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="urlImagem">Imagem</label>
+						<input  th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="Url da imagem"/>
+						<small>Copie a imagem de um bom produto e cole aqui para ajudar conseguir compradores.</small>
+						<div class="invalid-feedback" th:errors="*{urlImagem}">
+							Erros da url imagem
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="descricaoProduto">Descrição</label>
+						<textarea th:field="*{descricaoProduto}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea> 
+					</div>
+					<button class="btn btn-primary" type="submit">Cadastrar</button>
+				</form>
+			</div>	
+		</div>
+	</body>
+</html>
